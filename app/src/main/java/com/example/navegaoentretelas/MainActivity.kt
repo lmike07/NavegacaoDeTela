@@ -3,16 +3,18 @@ package com.example.navegaoentretelas
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
-import androidx.activity.enableEdgeToEdge
+
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        Log.i("ciclo_vida", "onCreate")
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -33,5 +35,35 @@ class MainActivity : AppCompatActivity() {
             val navPerfil = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(navPerfil)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i("ciclo_vida", "onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("ciclo_vida", "onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i("ciclo_vida", "onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i("ciclo_vida", "OnStop")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.i("ciclo_vida", "onRestart")
+    }
+
+    override fun onDestroy() {
+        Log.i("ciclo_vida", "onDestroy")
+        super.onDestroy()
     }
 }
